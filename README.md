@@ -8,15 +8,15 @@
                                                 
 ```
 
-README LANGUAGES [ [ENGLISH](README_enUS.md) | [中文](README.md) ]
+README LANGUAGES [ [ENGLISH](README_enUS.md) | [中文](README.md) ]~~~~
 
 # GithubReleases4J
 
-[![version](https://img.shields.io/github/v/release/CarmJos/GithubPM)](https://github.com/CarmJos/GithubPM/releases)
-[![License](https://img.shields.io/github/license/CarmJos/GithubPM)](https://opensource.org/licenses/GPL-3.0)
-[![workflow](https://github.com/CarmJos/GithubPM/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/CarmJos/GithubPM/actions/workflows/maven.yml)
-![CodeSize](https://img.shields.io/github/languages/code-size/CarmJos/GithubPM)
-![](https://visitor-badge.glitch.me/badge?page_id=GithubPM.readme)
+[![version](https://img.shields.io/github/v/release/CarmJos/GithubReleases4J)](https://github.com/CarmJos/GithubReleases4J/releases)
+[![License](https://img.shields.io/github/license/CarmJos/GithubReleases4J)](https://opensource.org/licenses/GPL-3.0)
+[![workflow](https://github.com/CarmJos/GithubReleases4J/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/CarmJos/GithubReleases4J/actions/workflows/maven.yml)
+![CodeSize](https://img.shields.io/github/languages/code-size/CarmJos/GithubReleases4J)
+![](https://visitor-badge.glitch.me/badge?page_id=GithubReleases4J.readme)
 
 GitHub Releases for Java , 基于 [GitHub REST API](https://docs.github.com/cn/rest/reference/releases) 实现。
 
