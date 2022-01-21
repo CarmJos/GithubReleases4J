@@ -8,7 +8,7 @@
                                                 
 ```
 
-README LANGUAGES [ [ENGLISH](README_enUS.md) | [中文](README.md) ]~~~~
+README LANGUAGES [ [ENGLISH](README_enUS.md) | [中文](README.md) ]
 
 # GithubReleases4J
 
