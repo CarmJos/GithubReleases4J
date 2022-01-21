@@ -16,7 +16,6 @@ README LANGUAGES [ [ENGLISH](README_enUS.md) | [中文](README.md) ]
 [![License](https://img.shields.io/github/license/CarmJos/GithubPM)](https://opensource.org/licenses/GPL-3.0)
 [![workflow](https://github.com/CarmJos/GithubPM/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/CarmJos/GithubPM/actions/workflows/maven.yml)
 ![CodeSize](https://img.shields.io/github/languages/code-size/CarmJos/GithubPM)
-![Support](https://img.shields.io/badge/Minecraft-Java%201.16--Latest-green)
 ![](https://visitor-badge.glitch.me/badge?page_id=GithubPM.readme)
 
 GitHub Releases for Java , 基于 [GitHub REST API](https://docs.github.com/cn/rest/reference/releases) 实现。

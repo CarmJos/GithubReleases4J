@@ -17,10 +17,6 @@ public class GithubAsset {
 		return new GithubAsset(source, contents);
 	}
 
-	protected static GithubAsset of(@NotNull GithubRelease source, @NotNull String jsonString) {
-		return of(source, new JSONObject(jsonString));
-	}
-
 	private final @NotNull GithubRelease source;
 	private final @NotNull JSONObject contents;
 
@@ -102,6 +98,6 @@ public class GithubAsset {
 
 	@Override
 	public String toString() {
-		return getContents().toString(0);
+		return getContents().toString();
 	}
 }

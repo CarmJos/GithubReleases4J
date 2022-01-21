@@ -26,7 +26,6 @@ public class GithubReleasesTest {
 			release.getAssets().stream().findFirst().ifPresent(GithubReleasesTest::downloadAssets);
 		}
 
-
 	}
 
 	private static void printInfo(@Nullable GithubRelease release) {

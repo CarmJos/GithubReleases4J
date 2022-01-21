@@ -147,7 +147,7 @@ public class GithubRelease {
 
 	@Override
 	public String toString() {
-		return getContents().toString(0);
+		return getContents().toString();
 	}
 
 
