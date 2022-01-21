@@ -7,9 +7,11 @@ import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class GithubReleasesTest {
 
+	public static boolean DOWNLOAD = true;
 	public static final SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	@Test
@@ -21,13 +23,7 @@ public class GithubReleasesTest {
 		GithubRelease release = GithubReleases4J.getLatestRelease("CarmJos", "UltraDepository");
 		if (release != null) {
 			printInfo(release);
-			release.getAssets().stream().findFirst().ifPresent(githubAsset -> {
-				try {
-					File file = githubAsset.download(null);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			});
+			release.getAssets().stream().findFirst().ifPresent(GithubReleasesTest::downloadAssets);
 		}
 
 
@@ -37,8 +33,8 @@ public class GithubReleasesTest {
 		if (release == null) System.out.println("# NULL");
 		else {
 			System.out.println("# " + release.getName() + " [" + FORMAT.format(release.getCreateTime()) + "]");
-//			List<GithubAsset> assets = release.getAssets();
-//			assets.forEach(GithubReleasesTest::printAssets);
+			List<GithubAsset> assets = release.getAssets();
+			assets.forEach(GithubReleasesTest::printAssets);
 		}
 	}
 
@@ -46,6 +42,17 @@ public class GithubReleasesTest {
 		if (assets == null) System.out.println("- NULL");
 		else {
 			System.out.println("- " + assets.getName() + " [" + assets.getSize() + "]");
+		}
+	}
+
+	private static void downloadAssets(@Nullable GithubAsset assets) {
+		if (!DOWNLOAD) return;
+		if (assets == null) return;
+		try {
+			File file = assets.download(null);
+			System.out.println("- at " + file.getAbsolutePath());
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
