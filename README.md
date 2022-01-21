@@ -26,12 +26,12 @@ GitHub Releases for Java , 基于 [GitHub REST API](https://docs.github.com/cn/r
 ## 包含功能
 
 - Release 的基本信息
-  - Tag版本号、标题、内容介绍等
+    - Tag版本号、标题、内容介绍等
 - Release 的作者信息
-  - ID 、头像、身份等
+    - ID 、头像、身份等
 - Release 的附件信息
-  - 附件的名称、类型、大小、下载链接等
-  - 支持直接对附件进行下载
+    - 附件的名称、类型、大小、下载链接等
+    - 支持直接对附件进行下载
 
 ## 依赖方式
 
@@ -64,7 +64,7 @@ GitHub Releases for Java , 基于 [GitHub REST API](https://docs.github.com/cn/r
             <scope>compile</scope>
         </dependency>
     </dependencies>
-    
+
 </project>
 ```
 
@@ -91,7 +91,43 @@ dependencies {
 
 ## 开发示例
 
+```java
+import cc.carm.lib.githubreleases4j.*;
 
+import java.io.IOException;
+
+public class demo {
+
+	public void onTest() {
+
+		List<GithubRelease> releases = GithubReleases4J.listReleases("作者名", "项目名");
+		//获取Releases列表
+
+		GithubRelease latestRelease = GithubReleases4J.getLatestRelease(
+				"作者名", "项目名",
+				"Token" // 如果是私有项目，可以填写一个OAuth Token来获取信息和下载构件
+		); // 获得最后一次的Release
+
+		if (lastRelease != null) {
+
+			List<GithubAsset> assets = latestRelease.getAssets();
+			// 获取该 Release 的附件列表
+
+			for (GithubAsset asset : assets) {
+				try {
+					asset.download(null); // 以默认名称下载到当前目录
+				} catch (IOException exception) {
+					exception.printStackTrace();
+				}
+			}
+
+			GithubUser author = latestRelease.getAuthor(); //获取该Release的作者
+
+		}
+	}
+
+}
+```
 
 ## 支持与捐赠
 
