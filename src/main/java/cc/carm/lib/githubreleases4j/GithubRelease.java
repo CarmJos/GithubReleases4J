@@ -130,12 +130,22 @@ public class GithubRelease {
 		return getContents().getString("discussion_url");
 	}
 
+	/**
+	 * Get the author of this release.
+	 *
+	 * @return The author user {@link GithubUser}
+	 */
 	public GithubUser getAuthor() {
 		return Optional.ofNullable(getContents().getJSONObject("author"))
 				.map(GithubUser::of)
 				.orElse(null);
 	}
 
+	/**
+	 * Get the assets of this release.
+	 *
+	 * @return {@link GithubAsset}
+	 */
 	public List<GithubAsset> getAssets() {
 		JSONArray assetsArray = getContents().getJSONArray("assets");
 		if (assetsArray == null) return new ArrayList<>();

@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 public class GitHubHttpUtils {
 
 	private GitHubHttpUtils() {
+		// Should not be the instance or use by other codes.
 	}
 
 	protected static JSONObject getObject(@NotNull String urlString, @Nullable String token) throws IOException {

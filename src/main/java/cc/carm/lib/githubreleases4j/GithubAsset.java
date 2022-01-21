@@ -81,15 +81,34 @@ public class GithubAsset {
 		return GithubReleases4J.parseDate(getContents().getString("updated_at"));
 	}
 
+	/**
+	 * Download this asset to current path with original name.
+	 *
+	 * @return Downloaded file.
+	 * @throws IOException Throws when has any io exception
+	 */
 	public File download() throws IOException {
 		return download(null);
 	}
 
+	/**
+	 * Download this asset with provided path and name.
+	 *
+	 * @param path target path, e.g. "cache/build.zip"
+	 * @param options Copy options
+	 * @return Downloaded file.
+	 * @throws IOException Throws when has any io exception
+	 */
 	public File download(@Nullable String path, CopyOption... options) throws IOException {
 		path = path == null ? getName() : path;
 		return GitHubHttpUtils.download(getBrowserDownloadURL(), getSource().getAuthToken(), path, options);
 	}
 
+	/**
+	 * Get the uploader of this asset.
+	 *
+	 * @return The author user {@link GithubUser}
+	 */
 	public GithubUser getUploader() {
 		return Optional.ofNullable(getContents().getJSONObject("uploader"))
 				.map(GithubUser::of)
