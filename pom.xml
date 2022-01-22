@@ -14,7 +14,7 @@
 
     <groupId>cc.carm.lib</groupId>
     <artifactId>githubreleases4j</artifactId>
-    <version>1.2.1</version>
+    <version>1.2.2</version>
 
     <name>GithubReleases4J</name>
     <description>Github Releases for Java</description>
@@ -129,6 +129,20 @@
                 <configuration>
                     <useSystemClassLoader>false</useSystemClassLoader>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
