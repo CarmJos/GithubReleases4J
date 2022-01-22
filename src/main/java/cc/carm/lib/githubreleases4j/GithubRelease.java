@@ -8,7 +8,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -135,10 +134,8 @@ public class GithubRelease {
 	 *
 	 * @return The author user {@link GithubUser}
 	 */
-	public @Nullable GithubUser getAuthor() {
-		return Optional.ofNullable(getContents().getJSONObject("author"))
-				.map(GithubUser::of)
-				.orElse(null);
+	public @NotNull GithubUser getAuthor() {
+		return GithubUser.of(getContents().getJSONObject("author"));
 	}
 
 	/**
