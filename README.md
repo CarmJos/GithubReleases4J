@@ -89,7 +89,7 @@ dependencies {
 
 ## DEMO Code
 
-Please [click here]() to read the demo codes.
+Please [click here](src/test/java/GithubDemo.java) to read the demo codes.
 
 ## Open Source License.
 
