@@ -39,4 +39,30 @@ public class GithubDemo {
 		}
 	}
 
+	public void checkUpdate() {
+
+		String owner = "Owner";
+		String repository = "RepoName";
+
+		Integer behindVersions = GithubReleases4J.getVersionBehind(
+				owner, repository,
+				"Token",// OAuth token if it is a private repository.
+				"Current Version Tag"
+		);
+
+		if (behindVersions == null) {
+			System.out.println("Check failed! Please check updates manually.");
+			System.out.println("Download at " + GithubReleases4J.getReleasesURL(owner, repository));
+		} else {
+			if (behindVersions > 0) {
+				System.out.println("Outdated! Now behind " + behindVersions + " versions.");
+				System.out.println("Download latest version at " + GithubReleases4J.getLatestReleaseURL(owner, repository));
+			} else {
+				System.out.println("Now is using the latest version.");
+			}
+
+		}
+
+	}
+
 }

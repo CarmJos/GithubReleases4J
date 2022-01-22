@@ -39,6 +39,7 @@ To provide an easy way to fetch updates and download assets.
     - Size
     - ...
 - Release's Assets Download
+- Update check methods. (See demo)
 
 ## Dependency Usage
 
