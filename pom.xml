@@ -14,7 +14,7 @@
 
     <groupId>cc.carm.lib</groupId>
     <artifactId>githubreleases4j</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
 
     <name>GithubReleases4J</name>
     <description>Github Releases for Java</description>

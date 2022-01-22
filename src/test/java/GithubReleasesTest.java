@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class GithubReleasesTest {
 		if (!DOWNLOAD) return;
 		if (assets == null) return;
 		try {
-			File file = assets.download(null);
+			File file = assets.download();
 			System.out.println("- at " + file.getAbsolutePath());
 		} catch (IOException e) {
 			e.printStackTrace();

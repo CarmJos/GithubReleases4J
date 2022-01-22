@@ -21,57 +21,44 @@ public class GitHubHttpUtils {
 		// Should not be the instance or use by other codes.
 	}
 
-	protected static JSONObject getObject(@NotNull String urlString, @Nullable String token) throws IOException {
-		URL url = new URL(urlString);
-		URLConnection conn = url.openConnection();
-		conn.setRequestProperty("User-Agent", "GithubReleases4J");
-		if (token != null) {
-			conn.setRequestProperty("Authorization", "token " + token);
-		}
-		conn.setRequestProperty("Accept", "application/vnd.github.v3+json");
-		conn.connect();
-
-		InputStream in = conn.getInputStream();
-
-		BufferedReader reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
-		String responseBody = reader.lines().collect(Collectors.joining(System.lineSeparator()));
-		reader.close();
-		return new JSONObject(responseBody);
-	}
-
-	protected static JSONArray getArray(@NotNull String urlString, String token) throws IOException {
-		URL url = new URL(urlString);
+	private static URLConnection createConnection(@NotNull String httpURL, @Nullable String token) throws IOException {
+		URL url = new URL(httpURL);
 
 		URLConnection conn = url.openConnection();
 		conn.setRequestProperty("User-Agent", "GithubReleases4J");
-		if (token != null) {
-			conn.setRequestProperty("Authorization", "token " + token);
-		}
 		conn.setRequestProperty("Accept", "application/vnd.github.v3+json");
-		conn.connect();
 
-		InputStream in = conn.getInputStream();
+		if (token != null) conn.setRequestProperty("Authorization", "token " + token);
 
-		BufferedReader reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
-		String responseBody = reader.lines().collect(Collectors.joining(System.lineSeparator()));
-		reader.close();
-
-		return new JSONArray(responseBody);
+		return conn;
 	}
 
-	protected static File download(@NotNull String urlString, @Nullable String token,
+	private static String getResponse(@NotNull String httpURL, @Nullable String token) throws IOException {
+		URLConnection connection = createConnection(httpURL, token);
+		InputStream in = connection.getInputStream();
+
+		BufferedReader reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
+		String response = reader.lines().collect(Collectors.joining(System.lineSeparator()));
+		reader.close();
+
+		return response;
+	}
+
+
+	protected static JSONObject getObject(@NotNull String httpURL, @Nullable String token) throws IOException {
+		return new JSONObject(getResponse(httpURL, token));
+	}
+
+	protected static JSONArray getArray(@NotNull String httpURL, String token) throws IOException {
+		return new JSONArray(getResponse(httpURL, token));
+	}
+
+	protected static File download(@NotNull String httpURL, @Nullable String token,
 								   @NotNull String path, CopyOption... copyOptions) throws IOException {
-		URL url = new URL(urlString);
 		Path target = Paths.get(path);
 
-		URLConnection conn = url.openConnection();
-		conn.setRequestProperty("User-Agent", "GithubReleases4J");
-		if (token != null) {
-			conn.setRequestProperty("Authorization", "token " + token);
-		}
-		conn.setRequestProperty("Accept", "application/vnd.github.v3+json");
-
-		InputStream in = conn.getInputStream();
+		URLConnection connection = createConnection(httpURL, token);
+		InputStream in = connection.getInputStream();
 
 		Files.copy(in, target, copyOptions);
 		in.close();

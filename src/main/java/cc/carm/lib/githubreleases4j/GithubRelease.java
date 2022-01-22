@@ -135,7 +135,7 @@ public class GithubRelease {
 	 *
 	 * @return The author user {@link GithubUser}
 	 */
-	public GithubUser getAuthor() {
+	public @Nullable GithubUser getAuthor() {
 		return Optional.ofNullable(getContents().getJSONObject("author"))
 				.map(GithubUser::of)
 				.orElse(null);
@@ -146,7 +146,7 @@ public class GithubRelease {
 	 *
 	 * @return {@link GithubAsset}
 	 */
-	public List<GithubAsset> getAssets() {
+	public @NotNull List<GithubAsset> getAssets() {
 		JSONArray assetsArray = getContents().getJSONArray("assets");
 		if (assetsArray == null) return new ArrayList<>();
 		return IntStream.range(0, assetsArray.length())
