@@ -27,6 +27,7 @@ public class GithubReleases4J {
 		// Should not be the instance.
 	}
 
+	public static String GITHUB_URL = "https://github.com";
 	public static String GITHUB_API_URL = "https://api.github.com";
 	public static SimpleDateFormat GH_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
@@ -158,6 +159,62 @@ public class GithubReleases4J {
 	 */
 	public static @Nullable GithubRelease getLatestRelease(@NotNull String owner, @NotNull String repository) {
 		return getLatestRelease(owner, repository, null);
+	}
+
+	/**
+	 * Get how many versions behind the current version's tag name.
+	 *
+	 * @param owner          Repository's Owner
+	 * @param repository     Repository's Name
+	 * @param token          OAuth Access Token
+	 *                       <br> Necessary when this repository is private.
+	 * @param currentTagName Current Version's tag name.
+	 * @return NULL if not fetch releases, -1 if no match tag name.
+	 * @since 1.3.0
+	 */
+	public static @Nullable Integer getVersionBehind(@NotNull String owner, @NotNull String repository,
+													 @Nullable String token, @NotNull String currentTagName) {
+		List<GithubRelease> releases = GithubReleases4J.listReleases(owner, repository, token);
+		if (releases.isEmpty()) return null; // Could not fetch releases.
+
+		int i = 0;
+		for (GithubRelease release : releases) {
+			if (release.getTagName().equalsIgnoreCase(currentTagName)) {
+				break;
+			}
+			i++;
+		}
+
+		if (i == releases.size()) return -1; // No match tag name;
+
+		return i;
+	}
+
+	/**
+	 * Get how many versions behind the current version's tag name.
+	 *
+	 * @param owner          Repository's Owner
+	 * @param repository     Repository's Name
+	 * @param currentTagName Current Version's tag name.
+	 * @return NULL if not fetch releases, -1 if no match tag name.
+	 * @since 1.3.0
+	 */
+	public static @Nullable Integer getVersionBehind(@NotNull String owner, @NotNull String repository,
+													 @NotNull String currentTagName) {
+		return getVersionBehind(owner, repository, null, currentTagName);
+	}
+
+	public static @NotNull String getReleasesURL(@NotNull String owner, @NotNull String repository) {
+		return buildURL("%s/%s/%s/releases", GITHUB_URL, owner, repository);
+	}
+
+	public static @NotNull String getLatestReleaseURL(@NotNull String owner, @NotNull String repository) {
+		return getReleasesURL(owner, repository) + "/latest";
+	}
+
+	public static @NotNull String getReleaseURLByTag(@NotNull String owner, @NotNull String repository,
+													 @NotNull String releaseTagName) {
+		return getReleasesURL(owner, repository) + "/tag/" + releaseTagName;
 	}
 
 	private static String buildURL(@NotNull String url, Object... params) {
