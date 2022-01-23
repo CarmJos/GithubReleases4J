@@ -90,7 +90,7 @@ dependencies {
 
 ## 开发示例
 
-请 [**点击这里**](src/test/java/GithubDemo.java) 查看示例代码。
+请 [**点击这里**](src/test/java/GithubDemoChinese.java) 查看示例代码，也可以 [点击这里](https://github.com/CarmJos/UltraDepository/blob/master/src/main/java/cc/carm/plugin/ultradepository/hooker/UpdateChecker.java) 查看实例项目。
 
 ## 支持与捐赠
 

@@ -53,14 +53,15 @@ public class GithubDemo {
 		if (behindVersions == null) {
 			System.out.println("Check failed! Please check updates manually.");
 			System.out.println("Download at " + GithubReleases4J.getReleasesURL(owner, repository));
+		} else if (behindVersions == 0) {
+			System.out.println("Check successfully, Now is up-to-date.");
+		} else if (behindVersions > 0) {
+			System.out.println("Outdated! Now behind " + behindVersions + " versions.");
+			System.out.println("Download latest version at " + GithubReleases4J.getLatestReleaseURL(owner, repository));
 		} else {
-			if (behindVersions > 0) {
-				System.out.println("Outdated! Now behind " + behindVersions + " versions.");
-				System.out.println("Download latest version at " + GithubReleases4J.getLatestReleaseURL(owner, repository));
-			} else {
-				System.out.println("Now is using the latest version.");
-			}
-
+			System.out.println("Check failed! Current version doesn't exists.");
+			System.out.println("Please use original version to avoid security issues.");
+			System.out.println("Download latest version at " + GithubReleases4J.getLatestReleaseURL(owner, repository));
 		}
 
 	}
