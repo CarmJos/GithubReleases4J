@@ -1,7 +1,7 @@
 import cc.carm.lib.githubreleases4j.GithubReleases4J;
 import org.junit.Test;
 
-public class GithubVersionTest {
+public class GithubVersionCheckerTest {
 
 
 	@Test

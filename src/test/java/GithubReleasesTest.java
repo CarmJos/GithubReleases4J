@@ -18,7 +18,7 @@ public class GithubReleasesTest {
 	@Test
 	public void onTest() {
 
-		GithubReleases4J.listReleases("CarmJos", "EasyPlugin")
+		GithubReleases4J.listReleases("CarmJos", "GithubReleases4J")
 				.stream().limit(2).forEach(GithubReleasesTest::printInfo);
 
 		GithubRelease release = GithubReleases4J.getLatestRelease("CarmJos", "UltraDepository");
@@ -32,16 +32,18 @@ public class GithubReleasesTest {
 	private static void printInfo(@Nullable GithubRelease release) {
 		if (release == null) System.out.println("# NULL");
 		else {
-			System.out.println("# " + release.getName() + " [" + FORMAT.format(release.getCreateTime()) + "]");
+			print("# %s %s [%s] ",
+					release.getRepository(), release.getName(),
+					FORMAT.format(release.getCreateTime())
+			);
 			List<GithubAsset> assets = release.getAssets();
 			assets.forEach(GithubReleasesTest::printAssets);
 		}
 	}
 
 	private static void printAssets(@Nullable GithubAsset assets) {
-		if (assets == null) System.out.println("- NULL");
-		else {
-			System.out.println("- " + assets.getName() + " [" + assets.getSize() + "]");
+		if (assets != null) {
+			print("- %s (%s B)", assets.getName(), assets.getSize());
 		}
 	}
 
@@ -49,11 +51,15 @@ public class GithubReleasesTest {
 		if (!DOWNLOAD) return;
 		if (assets == null) return;
 		try {
-			File file = assets.download();
-			System.out.println("- at " + file.getAbsolutePath());
+			File file = assets.download(StandardCopyOption.REPLACE_EXISTING);
+			System.out.println("| -> " + file.getAbsolutePath());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private static void print(String format, Object... params) {
+		System.out.printf((format) + "%n", params);
 	}
 
 

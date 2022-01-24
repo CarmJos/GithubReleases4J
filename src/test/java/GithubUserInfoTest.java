@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.text.SimpleDateFormat;
 
-public class GithubUserTestTest {
+public class GithubUserInfoTest {
 
 	public static final SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
