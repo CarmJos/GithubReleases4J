@@ -257,7 +257,7 @@
                 <repository>
                     <id>github</id>
                     <name>GitHub Packages</name>
-                    <url>https://maven.pkg.github.com/CarmJos/EasySQL</url>
+                    <url>https://maven.pkg.github.com/CarmJos/GithubReleases4J</url>
                 </repository>
             </distributionManagement>
         </profile>
