@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"cc.carm.lib.githubreleases4j","l":"GithubAsset"},{"p":"cc.carm.lib.githubreleases4j","l":"GitHubHttpUtils"},{"p":"cc.carm.lib.githubreleases4j","l":"GithubRelease"},{"p":"cc.carm.lib.githubreleases4j","l":"GithubReleases4J"},{"p":"cc.carm.lib.githubreleases4j","l":"GithubUser"}]
