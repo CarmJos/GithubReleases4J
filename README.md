@@ -50,21 +50,32 @@ To provide an easy way to fetch updates and download assets.
 
 <project>
     <repositories>
+      
+        <repository>
+            <!--Using central repository-->
+            <id>maven</id>
+            <name>Maven Central</name>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
+      
         <repository>
             <!--Using github packages-->
             <id>GithubReleases4J</id>
             <name>GitHub Packages</name>
             <url>https://maven.pkg.github.com/CarmJos/GithubReleases4J</url>
         </repository>
+      
     </repositories>
 
     <dependencies>
+      
         <dependency>
             <groupId>cc.carm.lib</groupId>
             <artifactId>githubreleases4j</artifactId>
             <version>[LATEST RELEASE]</version>
             <scope>compile</scope>
         </dependency>
+      
     </dependencies>
 
 </project>
@@ -77,6 +88,9 @@ To provide an easy way to fetch updates and download assets.
 
 ```groovy
 repositories {
+  
+    mavenCentral() // Using central repository.
+  
     // Using github packages.
     maven { url 'https://maven.pkg.github.com/CarmJos/GithubReleases4J' }
 }
