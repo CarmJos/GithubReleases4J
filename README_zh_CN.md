@@ -41,27 +41,39 @@ GitHub Releases for Java , 基于 [GitHub REST API](https://docs.github.com/cn/r
 
 <project>
     <repositories>
+      
+        <repository>
+            <!--采用Maven中心库，安全稳定，但版本更新需要等待同步-->
+            <id>maven</id>
+            <name>Maven Central</name>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
+      
         <repository>
             <!--采用github依赖库，安全稳定，但需要配置 (推荐)-->
             <id>GithubReleases4J</id>
             <name>GitHub Packages</name>
             <url>https://maven.pkg.github.com/CarmJos/GithubReleases4J</url>
         </repository>
+      
         <repository>
             <!--采用我的私人依赖库，简单方便，但可能因为变故而无法使用-->
             <id>carm-repo</id>
             <name>Carm's Repo</name>
             <url>https://repo.carm.cc/repository/maven-public/</url>
         </repository>
+      
     </repositories>
 
     <dependencies>
+      
         <dependency>
             <groupId>cc.carm.lib</groupId>
             <artifactId>githubreleases4j</artifactId>
             <version>[LATEST RELEASE]</version>
             <scope>compile</scope>
         </dependency>
+      
     </dependencies>
 
 </project>
@@ -74,6 +86,10 @@ GitHub Releases for Java , 基于 [GitHub REST API](https://docs.github.com/cn/r
 
 ```groovy
 repositories {
+  
+    // 采用Maven中心库，安全稳定，但版本更新需要等待同步 
+    mavenCentral()
+
     // 采用github依赖库，安全稳定，但需要配置 (推荐)
     maven { url 'https://maven.pkg.github.com/CarmJos/GithubReleases4J' }
 
